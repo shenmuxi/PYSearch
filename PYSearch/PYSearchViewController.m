@@ -175,10 +175,16 @@
                 [leftLayoutConstraint setConstant:PYSEARCH_MARGIN - navigationBarLayoutMargins.left];
             }
         }
+        // add by ssjin
+        NSLayoutConstraint *leftLayoutConstraint = [searchBar.leftAnchor constraintEqualToAnchor:titleView.leftAnchor];
         searchBar.py_height = self.view.py_width > self.view.py_height ? 24 : 30;
-        searchBar.py_width = self.view.py_width - adaptWidth - PYSEARCH_MARGIN;
+        // modify by ssjin
+        searchBar.py_width = self.view.py_width - adaptWidth - PYSEARCH_MARGIN - leftLayoutConstraint.constant  - navigationBarLayoutMargins.left -  navigationBarLayoutMargins.right;;
         searchField.frame = searchBar.bounds;
         cancelButton.py_width = self.cancelButtonWidth;
+        // add by ssjin
+        searchBar.layer.cornerRadius = 10;
+        searchBar.layer.masksToBounds = YES;
     } else {
         titleView.py_y = self.view.py_width > self.view.py_height ? 4 : 7;
         titleView.py_height = self.view.py_width > self.view.py_height ? 24 : 30;
